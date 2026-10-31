@@ -142,3 +142,69 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --background: oklch(0.32 0.14 262);
+  --foreground: oklch(0.97 0.02 90);
+  --card: oklch(0.4 0.15 262);
+  --card-foreground: oklch(0.97 0.02 90);
+  --primary: oklch(0.78 0.18 65);
+  --primary-foreground: oklch(0.25 0.08 40);
+  --secondary: oklch(0.68 0.24 350);
+  --secondary-foreground: oklch(0.98 0.01 90);
+  --accent: oklch(0.85 0.17 95);
+  --accent-foreground: oklch(0.25 0.08 40);
+  --border: oklch(0.5 0.12 262);
+  --marigold: oklch(0.76 0.19 60);
+  --marigold-deep: oklch(0.66 0.2 45);
+  --marigold-light: oklch(0.86 0.17 85);
+  --picado-1: oklch(0.68 0.24 350);
+  --picado-2: oklch(0.8 0.18 70);
+  --picado-3: oklch(0.72 0.2 150);
+  --picado-4: oklch(0.62 0.24 25);
+  --picado-5: oklch(0.65 0.22 300);
+}
+
+@theme inline {
+  --color-marigold: var(--marigold);
+  --font-display: "Lobster", cursive;
+  --font-body: "Nunito", sans-serif;
+  --shadow-altar: 0 20px 50px -15px color-mix(in oklab, var(--marigold) 55%, transparent);
+  --drop-shadow-glow: 0 0 18px color-mix(in oklab, var(--marigold) 70%, transparent);
+}
+
+body {
+  background: radial-gradient(ellipse at top, oklch(0.42 0.17 265), var(--background) 70%);
+}
+
+.paw-cursor, .paw-cursor * {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g fill='%23ff9a1f' stroke='%23fff' stroke-width='1.2'><ellipse cx='16' cy='21' rx='7' ry='6'/><ellipse cx='7' cy='13' rx='3' ry='4'/><ellipse cx='13' cy='8' rx='3' ry='4'/><ellipse cx='19' cy='8' rx='3' ry='4'/><ellipse cx='25' cy='13' rx='3' ry='4'/></g></svg>") 16 16, pointer;
+}
+
+.grow-hover { transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); }
+.grow-hover:hover { transform: scale(1.25); }
+
+.petal {
+  position: absolute;
+  top: -40px;
+  background: radial-gradient(circle at 30% 30%, var(--marigold-light), var(--marigold-deep));
+  border-radius: 60% 0 60% 0;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.9;
+}
+@keyframes petal-fall {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(40px, 55vh) rotate(220deg); }
+  100% { transform: translate(-20px, 110vh) rotate(480deg); }
+}
+
+.picado {
+  transform-origin: top center;
+  animation: sway 2.6s ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from { transform: rotate(-6deg) skewX(-3deg); }
+  to { transform: rotate(6deg) skewX(3deg); }
+}
